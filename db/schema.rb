@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_021554) do
     t.integer "user_id", null: false
     t.integer "budget", default: 0, null: false
     t.integer "place", default: 0, null: false
-    t.string "image"
+    t.string "image", default: "0", null: false
     t.string "title", null: false
     t.float "latitude"
     t.float "longitude"

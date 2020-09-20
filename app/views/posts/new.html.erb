@@ -1,51 +1,51 @@
-<h2 class="new-headline">新規投稿</h2>
-<div class="container">
-  <div class="row">
-  <p>こちらでは旅の新規投稿を行います。<br>
-  	投稿をすると詳細画面へ進みます。
-  </p>
-  <%= form_for(@post) do |f| %>
-  <div class="mx-auto" style="width: 1000px;">
-    <table class="table table-bordered">
-    	<div class="form-group">
-		<tr>
-		  <th><%= f.label :タイトル %></th>
-		  <td><%= f.text_field :title, class: "form-control" %></td>
-		</tr>
+	<h2 class="new-headline">新規投稿</h2>
+	<div class="container">
+	  <div class="row">
+	  <p>こちらでは旅の新規投稿を行います。<br>
+	  	投稿をすると詳細画面へ進みます。
+	  </p>
+	  <%= form_for(@post) do |f| %>
+	  <div class="mx-auto" style="width: 1000px;">
+	    <table class="table table-bordered">
+	    	<div class="form-group">
+			<tr>
+			  <th><%= f.label :タイトル %></th>
+			  <td><%= f.text_field :title, class: "form-control" %></td>
+			</tr>
+		</div>
+			<div class="form-group">
+			<tr>
+			  <th><%= f.label :旅先 %></th>
+			  <td><%= f.select :place, Post.places.keys, {} %></td>
+			</tr>
+		</div>
+	        <div class="form-group">
+			<tr>
+				<th><%= f.label :観光スポット名 %></th>
+				<td><%= f.text_field :address, class: "form-control" %></td>
+			</tr>
+		</div>
+			<div class="form-group">
+			<tr>
+			  <th><%= f.label :予算 %></th>
+			  <td><%= f.select :budget, Post.budgets.keys, {} %></td>
+			</tr>
+		</div>
+			<div class="form-group">
+			<tr>
+			  <th><%= f.label :感想 %></th>
+			  <td><%= f.text_area :impressions, class: "form-control"  %></td>
+			</tr>
+		</div>
+			<div class="form-group">
+			<tr>
+			  <th><%= f.label :写真 %></th>
+			  <td><%= f.file_field :image %></td>
+			</tr>
+		</div>
+	    </table>
 	</div>
-		<div class="form-group">
-		<tr>
-		  <th><%= f.label :旅先 %></th>
-		  <td><%= f.select :place, Post.places.keys, {} %></td>
-		</tr>
+	   <%= f.submit "登録する", class: "btn btn-primary float-right" %>
+	  <% end %>
 	</div>
-        <div class="form-group">
-		<tr>
-			<th><%= f.label :観光スポット名 %></th>
-			<td><%= f.text_field :address, class: "form-control" %></td>
-		</tr>
 	</div>
-		<div class="form-group">
-		<tr>
-		  <th><%= f.label :予算 %></th>
-		  <td><%= f.select :budget, Post.budgets.keys, {} %></td>
-		</tr>
-	</div>
-		<div class="form-group">
-		<tr>
-		  <th><%= f.label :感想 %></th>
-		  <td><%= f.text_area :impressions, class: "form-control"  %></td>
-		</tr>
-	</div>
-		<div class="form-group">
-		<tr>
-		  <th><%= f.label :写真 %></th>
-		  <td><%= f.file_field :image %></td>
-		</tr>
-	</div>
-    </table>
-</div>
-   <%= f.submit "登録する", class: "btn btn-primary float-right" %>
-  <% end %>
-</div>
-</div>

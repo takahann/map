@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.integer :user_id, null: false
       t.integer :budget, null: false, default: 0
       t.integer :place, null: false, default: 0
-      t.string :image
+      t.string :image, null: false, default: 0
       t.string :title, null: false
       t.float :latitude
       t.float :longitude

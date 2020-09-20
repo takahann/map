@@ -4,7 +4,7 @@ let geocoder //変数の定義
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: gon.lat, lng: gon.lng},
-    zoom: 12
+    zoom: 14
     });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
