@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 	end
 	def create
   	@post = Post.new(post_params)
+    @post.user = current_user
   	if  @post.save
   	    redirect_to post_path(@post)
   	else
@@ -12,6 +13,10 @@ class PostsController < ApplicationController
   end
   def show
     @post = Post.find(params[:id])
+    @lat = @post.latitude
+    @lng = @post.longitude
+    gon.lat = @lat
+    gon.lng = @lng
   end
    private
   def post_params
