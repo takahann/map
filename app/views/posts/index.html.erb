@@ -1,0 +1,20 @@
+<h2 class="new-headline">旅一覧</h2>
+
+<div class="container">
+      <% @posts.each do |post| %>
+      <div class="row">
+        <% if post.image? %>
+        <%= image_tag post.image.url, size: "150x150"%>
+        <% else %>
+        <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="150" height="150">
+          <% end %>
+          <ul>
+        <li class="title"><strong><%= post.title %></strong></li>
+        <li>投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></li>
+      </ul>
+      <div class="col-sm-2">
+      <%= link_to "詳細", post_path(post), class: "btn btn-light" %>
+    </div>
+    </div>
+      <% end %>
+</div>

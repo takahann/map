@@ -13,3 +13,27 @@
   background: #3399CC;
   color: white;
 }
+
+.row{
+  padding-bottom: .5em;
+  border-bottom: 3px double #ccc;
+}
+ul {
+	list-style: none;
+	margin-top: 20px;
+}
+.title {
+	font-size: 24px
+}
+img {
+	margin: 25px 10px;
+}
+.btn-light {
+  font-size: 25px;
+  color: #fff;
+  background-color: #996600	;
+  border-color: #fff;
+  height: 70px;
+  width: 100px;
+  margin: 30px 200px;
+}
