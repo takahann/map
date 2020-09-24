@@ -1,5 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :likes, dependent: :destroy
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+   end
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
