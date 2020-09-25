@@ -40,10 +40,15 @@
 			<div class="form-group">
 			<tr>
 			  <th><%= f.label :写真 %></th>
-			  <td><%= f.file_field :image %></td>
+			  <td><%= f.file_field :image, id: :post_image %></td>
 			</tr>
 		</div>
 	    </table>
+	    <% if @post.image.present? %>
+		  <%= image_tag @post.image, id: :img_prev, size: "300x300" %>
+		<% else %>
+		  <%= image_tag "default.png", id: :img_prev, size: "300x300" %>
+		<% end %>
 	</div>
 	   <%= f.submit "登録する", class: "btn btn-primary float-right" %>
 	  <% end %>
