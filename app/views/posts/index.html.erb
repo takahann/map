@@ -1,8 +1,8 @@
-<h2 class="new-headline">旅一覧</h2>
+<h1 class="new-headline">旅一覧</h1>
 
-        <section class="jumbotron text-center">
+  <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">旅の一覧</h1>
+      <h2 class="jumbotron-heading">旅の一覧</h2>
       <p class="lead text-muted">こちらでは皆様の旅の記録一覧を紹介しております。<br>ぜひご覧になってください。また投稿するには会員登録で必要になります。<br>旅の共有を行なっておすすめスポットをシェアしていきましょう。</p>
       <p>
         <%= link_to '会員登録', new_user_registration_path, class: "btn btn-primary my-2" %>
@@ -10,7 +10,7 @@
       </p>
     </div>
   </section>
-      <div class="container">
+<div class="container">
   <div class="row">
       <% @posts.each do |post| %>
         <div class="col-md-4">
@@ -37,5 +37,5 @@
           </div>
         </div>
       <% end %>
-</div>
+  </div>
 </div>
