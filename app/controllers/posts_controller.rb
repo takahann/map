@@ -20,6 +20,8 @@ class PostsController < ApplicationController
     @lng = @post.longitude
     gon.lat = @lat
     gon.lng = @lng
+    @comment = Comment.new
+    @comments = @post.comments.order(created_at: :desc)
   end
   def edit
     @post = Post.find(params[:id])

@@ -30,7 +30,27 @@
 </div>
 <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary float-right" %>
   <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger float-right" %>
+  <% if @post.image? %>
+    <%= image_tag @post.image.url, size: "150x150"%>
+  <% else %>
+    <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="150" height="150">
+  <% end %>
+
+<div class="row">
+    <ul>
+        <li class="comment-create">
+            <h3 class="text-left title">レビュー</h3>
+        </li>
+        <li id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments } %>
+        </li>
+    </ul>
+    <hr>
+    <% if user_signed_in? %>
+        <div class="comment-create">
+            <h3 class="text-left">レビューを投稿する</h3>
+            <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+        </div>
+    <% end %>
 </div>
-  <%= image_tag @post.image.url %>
-
-
+</div>
