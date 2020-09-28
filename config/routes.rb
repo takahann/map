@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'homes/top'
+  get 'homes/about'
   devise_for :users
-  root to: 'posts#new'
+  root to: 'homes#top'
+  get "search" => "posts#search"
   resources :posts do
   	resource :likes, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]

@@ -1,0 +1,84 @@
+<div class="animate__animated animate__fadeInUp">
+  <div class="top-container">
+    <div class="row">
+      <h3 class="top-content">Map</h3>
+    </div>
+    <div class="row">
+      <p class="top-content-name">
+        <% if user_signed_in? %>
+          ようこそ！！<%= current_user.name %>さん
+        <% else %>
+          ようこそ！！ゲストさん
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+    <div class="container">
+      <h3 class="top-list"><i class="fas fa-camera"></i>新着投稿</h3>
+        <div class="row">
+        <% @posts.first(3).each do |post| %>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <% if post.image? %>
+                <%= image_tag post.image.url, class: "card-img-top", size: "287x225"%>
+              <% else %>
+                <img src="/assets/default.png" class="card-img-top" alt="Card image cap" width="287" height="225">
+              <% end %>
+              <div class="card-body">
+                <p class="card-text">
+                  <strong>タイトル：<%= post.title %></strong><br>
+                  <strong>地域　　：</strong><%= post.place %><br>
+                  <strong>予算　　：</strong><%= post.budget %>
+                </p>
+                <div class="d-flex justify-content">
+                    <div id="likes_buttons_<%= post.id %>">
+                      <%= render partial: 'likes/like', locals: { post: post} %>
+                    </div>
+                  <div class="btn-position">
+                    <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                  <small class="text-muted">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
+    <div class="container">
+      <h3 class="top-list"><i class="fas fa-crown" style="color: black;"></i>人気ランキング</h3>
+        <div class="row">
+        <% @post.each do |post| %>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <% if post.image? %>
+                <%= image_tag post.image.url, class: "card-img-top", size: "287x225"%>
+              <% else %>
+                <img src="/assets/default.png" class="card-img-top" alt="Card image cap" width="287" height="225">
+              <% end %>
+              <div class="card-body">
+                <p class="card-text">
+                  <strong>タイトル：<%= post.title %></strong><br>
+                  <strong>地域　　：</strong><%= post.place %><br>
+                  <strong>予算　　：</strong><%= post.budget %>
+                </p>
+                <div class="d-flex justify-content">
+                  <div id="likes_buttons_<%= post.id %>">
+                     <%= render partial: 'likes/like', locals: { post: post} %>
+                  </div>
+                  <div class="btn-position">
+                    <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                  <small class="text-muted">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    </div>
+    <div style="text-align:center;">
+        <%= link_to '投稿一覧', posts_path, class: "btn page-link text-dark d-inline-block rounded-pill"  %>
+    </div>
+</div>

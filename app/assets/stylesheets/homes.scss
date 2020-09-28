@@ -1,0 +1,26 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-content {
+    font-family: 'Amatic SC', cursive;
+    font-size: 80px;
+    color: black;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    text-shadow: 0px 0px 1px black;
+}
+.top-content-name {
+    font-size: 30px;
+    color: black;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    text-shadow: 0px 0px 1px black;
+}
+.top-list{
+	font-size: 30px;
+	font-weight: 600;
+	padding: 2px;
+	background: linear-gradient(transparent 60%, #cccccc 0%);
+}

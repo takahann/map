@@ -1,6 +1,6 @@
 <h1 class="new-headline">旅一覧</h1>
 
-  <section class="jumbotron text-center">
+  <section class="text-center">
     <div class="container">
       <h2 class="jumbotron-heading">旅の一覧</h2>
       <p class="lead text-muted">こちらでは皆様の旅の記録一覧を紹介しております。<br>ぜひご覧になってください。また投稿するには会員登録で必要になります。<br>旅の共有を行なっておすすめスポットをシェアしていきましょう。</p>
@@ -27,7 +27,9 @@
                 <strong>予算　　：</strong><%= post.budget %>
               </p>
               <div class="d-flex justify-content">
-                  <%= render 'likes/like', post: post %>
+                <div id="likes_buttons_<%= post.id %>">
+                  <%= render partial: 'likes/like', locals: { post: post} %>
+                </div>
                 <div class="btn-position">
                   <%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %>
                 </div>

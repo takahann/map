@@ -3,9 +3,17 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  def self.search(search)
+      if search
+        Post.where(['address LIKE ?', "%#{search}%"])
+      else
+        Post.all
+      end
+    end
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
-   end
+  end
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
