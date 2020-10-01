@@ -1,0 +1,134 @@
+<h2 class="headline">マイページ</h2>
+<div class="container", style="background-color:white;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="mypage-headline">
+        <i class="fa fa-user"></i><%= @user.name %>さんのページ
+      </div>
+    </div>
+    <div class="col-md-5 offset-md-1">
+      <% if @user.user_image? %>
+        <td><%= image_tag @user.user_image.url, class: "rounded-circle", size: "200x225"%>
+      <% else %>
+        <td><img src="/assets/no_image.jpg" class="rounded-circle" alt="Card image cap" width="200" height="225">
+      <% end %>
+    </div>
+      <div class="col-md-5">
+        <h3><%= @user.name %>さん</h3>
+        <p>投稿数：<%= @posts.count %></p>
+        <p><%= @user.introduction %></p>
+        <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
+        <%= render 'relationships/follow', user: @user %>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">投稿一覧<span class="badge badge-secondary"><%= @posts.count %></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="like-tab" data-toggle="tab" href="#like" role="tab" aria-controls="like" aria-selected="false">お気に入り<span class="badge badge-secondary"><%= @user.likes.count %></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="follow-tab" data-toggle="tab" href="#follow" role="tab" aria-controls="follow" aria-selected="false">フォロー中<span class="badge badge-secondary"><%= @user.followings.count %></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="false">フォロワー<span class="badge badge-secondary"><%= @user.followers.count %></span></a>
+      </li>
+    </ul>
+    </div>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table">
+        <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <% if post.image? %>
+              <td><%= image_tag post.image.url, class: "user-post-image", size: "200x225"%></td>
+            <% else %>
+              <td><img src="/assets/default.png" class="user-post-image" alt="Card image cap" width="200" height="225"></td>
+            <% end %>
+            <td><strong>タイトル：<%= post.title %></strong><br>
+                <strong>地域　　：</strong><%= post.place %><br>
+                <strong>予算　　：</strong><%= post.budget %><br>
+                <strong>投稿者　：
+                  <%= link_to user_path(post.user.id) do %>
+                   <%= post.user.name %>
+                  <% end %>
+            </td>
+            <td><%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><small class="text-muted">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></small></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="like" role="tabpanel" aria-labelledby="like-tab">
+      <table class="table">
+        <tbody>
+        <% current_user.like_posts.each do |post| %>
+          <tr>
+            <% if post.image? %>
+              <td><%= image_tag post.image.url, class: "user-post-image", size: "200x225"%></td>
+            <% else %>
+              <td><img src="/assets/default.png" class="user-post-image" alt="Card image cap" width="200" height="225"></td>
+            <% end %>
+            <td><strong>タイトル：<%= post.title %></strong><br>
+                <strong>地域　　：</strong><%= post.place %><br>
+                <strong>予算　　：</strong><%= post.budget %><br>
+                <strong>投稿者　：
+                  <%= link_to user_path(post.user.id) do %>
+                   <%= post.user.name %>
+                  <% end %>
+            </td>
+            <td><%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %></td>
+            <td><small class="text-muted">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></small></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="follow" role="tabpanel" aria-labelledby="follow-tab">
+      <table class="table">
+        <tbody>
+        <% @user.followings.each do |user| %>
+          <tr>
+            <% if user.user_image? %>
+              <td><%= image_tag user.user_image.url, class: "rounded-circle", size: "150x150"%></td>
+            <% else %>
+              <td><img src="/assets/no_image.jpg" class="rounded-circle" alt="Card image cap" width="150" height="150"></td>
+            <% end %>
+            <td><%= user.name %></td>
+            <td>投稿数：<%= user.posts.count %></td>
+            <td>フォロワー数：<%= user.followers.count %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
+      <table class="table">
+        <tbody>
+          <% @user.followers.each do |user| %>
+            <tr>
+              <% if user.user_image? %>
+                <td><%= image_tag user.user_image.url, class: "rounded-circle", size: "150x150"%></td>
+              <% else %>
+                <td><img src="/assets/no_image.jpg" class="rounded-circle" alt="Card image cap" width="150" height="150"></td>
+              <% end %>
+              <td><%= user.name %></td>
+              <td>投稿数：<%= user.posts.count %></td>
+              <td>フォロワー数：<%= user.followers.count %></td>
+              <td><%= render 'relationships/follow', user: user %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

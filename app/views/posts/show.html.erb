@@ -1,56 +1,56 @@
-<h2 class="new-headline">旅の記録</h2>
+<h2 class="headline">旅の記録</h2>
 
   <div class="container">
     <div class="row">
-    <div class="mx-auto" style="width: 1000px;">
-      <p>こちらでは以前の旅の詳細確認が行えます。</p>
-      <table class="table table-bordered">
-      <tr>
-        <th><p><strong>タイトル</strong></p></th>
-        <td><%= @post.title %></td>
-      </tr>
-      <tr>
-        <th><p><strong>地域</strong></p></th>
-        <td><%= @post.place %></td>
-      </tr>
-      <tr>
-        <th><p><strong>場所</strong></p></th>
-        <td><%= @post.address %><div id="map"><script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script></div></td>
-      </tr>
-      <tr>
-        <th><p><strong>予算</strong></p></th>
-        <td><%= @post.budget %></td>
-      </tr>
-      <tr>
-        <th><p><strong>感想</strong></p></th>
-        <td><%= @post.impressions %></td>
-      </tr>
-      <tr>
-        <th>撮影場所
-        </th>
-        <td><% if @post.image? %>
-            <%= image_tag @post.image.url, :width => '100%', :height => '300' %>
-          <% else %>
-            <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="100%" height="300">
-  　　　　<% end %></td>
-      </tr>
-    </table>
+      <div class="mx-auto" style="width: 1000px;">
+        <p>こちらでは以前の旅の詳細確認が行えます。</p>
+        <table class="table table-bordered">
+        <tr>
+          <th><p><strong>タイトル</strong></p></th>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <th><p><strong>地域</strong></p></th>
+          <td><%= @post.place %></td>
+        </tr>
+        <tr>
+          <th><p><strong>場所</strong></p></th>
+          <td><%= @post.address %><div id="map"><script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script></div></td>
+        </tr>
+        <tr>
+          <th><p><strong>予算</strong></p></th>
+          <td><%= @post.budget %></td>
+        </tr>
+        <tr>
+          <th><p><strong>感想</strong></p></th>
+          <td><%= @post.impressions %></td>
+        </tr>
+        <tr>
+          <th>撮影場所
+          </th>
+          <td><% if @post.image? %>
+              <%= image_tag @post.image.url, :width => '100%', :height => '300' %>
+            <% else %>
+              <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="100%" height="300">
+    　　　　<% end %></td>
+        </tr>
+      </table>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
-<div class="container">
-            <h3 class="text-left title">レビュー</h3>
-        <div id="comments_area">
-            <%= render partial: 'comments/index', locals: { comments: @comments } %>
-        </div>
-    <hr>
-    <% if user_signed_in? %>
+  <div class="container">
+    <h3 class="text-left title">レビュー</h3>
+      <div id="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments } %>
+      </div>
+      <hr>
+      <% if user_signed_in? %>
         <div class="comment-create">
-            <h3 class="text-left">レビューを投稿する</h3>
+          <h3 class="text-left">レビューを投稿する</h3>
             <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
         </div>
-    <% end %>
-</div>
+      <% end %>
+  </div>
 </div>
 

@@ -16,6 +16,9 @@
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
     <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'TOP', homes_top_path, class: "p-2 text-dark" %></h5>
     <nav class="my-2 my-md-0 mr-md-3">
+      <% if user_signed_in? %>
+      　　<%= link_to 'マイページ', user_path(current_user.id), class: "p-2 text-dark" %>
+      <% end %>
       <%= link_to '投稿', new_post_path, class: "p-2 text-dark" %>
       <%= link_to '投稿一覧', posts_path, class: "p-2 text-dark"  %>
       <%= link_to 'ログイン', user_session_path, class: "p-2 text-dark" %>
