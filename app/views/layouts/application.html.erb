@@ -6,31 +6,35 @@
   <%= csp_meta_tag %>
   <%= include_gon %>
   <script src="https://kit.fontawesome.com/bd2127829f.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to 'TOP', homes_top_path, class: "p-2 text-dark" %></h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-      <% if user_signed_in? %>
-      　　<%= link_to 'マイページ', user_path(current_user.id), class: "p-2 text-dark" %>
-      <% end %>
-      <%= link_to '投稿', new_post_path, class: "p-2 text-dark" %>
-      <%= link_to '投稿一覧', posts_path, class: "p-2 text-dark"  %>
-      <%= link_to 'ログイン', user_session_path, class: "p-2 text-dark" %>
-      <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class: "p-2 text-dark"  %>
-    </nav>
-    <%= link_to '新規登録', new_user_registration_path, class: "btn btn-outline-primary" %>
-  </div>
+    <div id="sp-menu">
+      <ul style="margin-top:0px;">
+        <li><i class="fa fa-user fa-2x"></i><%= link_to '　マイページ', user_path(current_user.id) %></li>
+        <li><i class="fa fa-home fa-2x"></i><%= link_to '　トップページ', homes_top_path %></li>
+        <li><i class="fa fa-sticky-note-o fa-2x"></i><%= link_to '　About', homes_about_path %></li>
+        <li><i class="fa fa-pencil-square-o fa-2x"></i> <%= link_to '　投稿', new_post_path %></li>
+        <li><i class="fa fa-list fa-2x"></i><%= link_to '　投稿一覧', posts_path %></li>
+        <li><i class="fa fa-sign-out fa-2x"></i><%= link_to '　ログアウト',destroy_user_session_path, method: :delete %></li>
+        <li><i class="fa fa-sign-in fa-2x"></i><%= link_to '　新規登録', new_user_registration_path %></li>
+      </ul>
+    </div>
+
+    <div id="hm-icon">
+      <a class="menu-trigger" href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
   <%= yield %>
   <footer>
     <p class="footer-text">© 2020 - map </p>
   </footer>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
