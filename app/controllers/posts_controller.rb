@@ -43,7 +43,10 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
-   private
+  def ranking
+    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+  end
+  private
   def post_params
    params.require(:post).permit(:title,
    	                            :image,

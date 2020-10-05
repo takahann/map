@@ -40,15 +40,25 @@
     </div>
   </div>
     <div id="sp-menu">
-      <ul style="margin-top:0px;">
-        <li><i class="fa fa-user fa-2x"></i><%= link_to '　マイページ', user_path(current_user.id) %></li>
-        <li><i class="fa fa-home fa-2x"></i><%= link_to '　トップページ', homes_top_path %></li>
-        <li><i class="fa fa-sticky-note-o fa-2x"></i><%= link_to '　About', homes_about_path %></li>
-        <li><i class="fa fa-pencil-square-o fa-2x"></i> <%= link_to '　投稿', new_post_path %></li>
-        <li><i class="fa fa-list fa-2x"></i><%= link_to '　投稿一覧', posts_path %></li>
-        <li><i class="fa fa-sign-out fa-2x"></i><%= link_to '　ログアウト',destroy_user_session_path, method: :delete %></li>
-        <li><i class="fa fa-sign-in fa-2x"></i><%= link_to '　新規登録', new_user_registration_path %></li>
-      </ul>
+      <% if user_signed_in? %>
+        <ul style="margin-top:0px;">
+          <li><i class="fa fa-user fa-2x"></i><%= link_to '　マイページ', user_path(current_user.id) %></li>
+          <li><i class="fa fa-home fa-2x"></i><%= link_to '　トップページ', homes_top_path %></li>
+          <li><i class="fa fa-sticky-note-o fa-2x"></i><%= link_to '　About', homes_about_path %></li>
+          <li><i class="fa fa-pencil-square-o fa-2x"></i> <%= link_to '　投稿', new_post_path %></li>
+          <li><i class="fa fa-crown fa-2x"></i><%= link_to '　ランキング', ranking_path %></li>
+          <li><i class="fa fa-list fa-2x"></i><%= link_to '　新着一覧', posts_path %></li>
+          <li><i class="fa fa-sign-out fa-2x"></i><%= link_to '　ログアウト',destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul style="margin-top:0px;">
+          <li><i class="fa fa-home fa-2x"></i><%= link_to '　トップページ', homes_top_path %></li>
+          <li><i class="fa fa-sticky-note-o fa-2x"></i><%= link_to '　About', homes_about_path %></li>
+          <li><i class="fa fa-list fa-2x"></i><%= link_to '　投稿一覧', posts_path %></li>
+          <li><i class="fa fa-sign-in fa-2x"></i><%= link_to '　ログイン', new_user_session_path %></li>
+          <li><i class="fa fa-user fa-2x"></i><%= link_to '　新規登録', new_user_registration_path %></li>
+        </ul>
+      <% end %>
     </div>
     <div id="hm-icon">
       <a class="menu-trigger" href="#">

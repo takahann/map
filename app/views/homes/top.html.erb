@@ -11,14 +11,6 @@
         <% end %>
       </p>
     </div>
-  <div class="row">
-    <div class="search-form">
-        <%= form_tag(search_path,:method => 'get') do %>
-          <%= text_field_tag :search %>
-          <%= submit_tag '検索', :name => nil %>
-        <% end %>
-      </div>
-  </div>
 
     <div class="container">
       <h3 class="top-list"><i class="fas fa-camera"></i>新着投稿</h3>
@@ -51,6 +43,9 @@
           </div>
         <% end %>
         </div>
+    </div>
+    <div style="text-align:center;">
+        <%= link_to 'ランキングを見る', ranking_path, class: "btn page-link text-dark d-inline-block rounded-pill"  %>
     </div>
     <div class="container">
       <h3 class="top-list"><i class="fas fa-crown" style="color: black;"></i>人気ランキング</h3>
@@ -85,5 +80,5 @@
         </div>
     </div>
     <div style="text-align:center;">
-        <%= link_to '投稿一覧', posts_path, class: "btn page-link text-dark d-inline-block rounded-pill"  %>
+        <%= link_to '新着投稿を見る', posts_path, class: "btn page-link text-dark d-inline-block rounded-pill"  %>
     </div>

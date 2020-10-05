@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :title, presence: true, length: { maximum: 20, minimum: 2 }
+  validates :impressions, presence: true, length: { maximum: 20 }
+
   def self.search(search)
       if search
         Post.where(['address LIKE ?', "%#{search}%"])
