@@ -154,3 +154,23 @@ footer {
     font-weight: bold;
 }
 
+.search-icon{
+    position: fixed;
+    right: 90px;
+    top: 18px;
+    z-index: 10;
+    color: black;
+}
+
+
+#search-menu {
+    position: absolute;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+}
