@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_112336) do
+ActiveRecord::Schema.define(version: 2020_10_06_065439) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_112336) do
     t.string "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_location", default: "", null: false
   end
 
   create_table "relationships", force: :cascade do |t|

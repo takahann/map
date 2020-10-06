@@ -2,7 +2,6 @@
 
   <div class="container">
     <div class="row">
-      <%= render 'layouts/flash' %>
       <div class="mx-auto" style="width: 1000px;">
         <p>こちらでは以前の旅の詳細確認が行えます。</p>
         <table class="table table-bordered">
@@ -27,13 +26,18 @@
           <td><%= @post.impressions %></td>
         </tr>
         <tr>
-          <th>撮影場所
-          </th>
-          <td><% if @post.image? %>
-              <%= image_tag @post.image.url, :width => '100%', :height => '300' %>
+          <th>写真</th>
+          <td>
+            <% if @post.image? %>
+              <%= image_tag @post.image.url, :width => '50%', :height => '300' %>
             <% else %>
-              <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="100%" height="300">
-    　　　　<% end %></td>
+              <img src="/assets/default.png" class="icon" alt="ユーザーアイコン" width="50%" height="300">
+    　　　　<% end %>
+          </td>
+        </tr>
+        <tr>
+          <th><p><strong>撮影場所</strong></p></th>
+          <td><%= @post.image_location %></td>
         </tr>
       </table>
       </div>

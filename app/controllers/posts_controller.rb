@@ -57,7 +57,8 @@ class PostsController < ApplicationController
    	                            :impressions,
    	                            :address,
                                 :latitude,
-                                :longitude
+                                :longitude,
+                                :image_location
    	                            )
   end
 
