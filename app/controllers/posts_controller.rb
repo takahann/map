@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :correct_post, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new]
 
   def search
     @posts = Post.search(params[:search])
@@ -13,9 +15,8 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
     @post.user = current_user
   	if @post.save
-  	    redirect_to post_path(@post)
+  	    redirect_to post_path(@post), notice: '投稿しました'
   	else
-      flash[:alert] = "名前を入力してください"
   		render :new
   	end
   end
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-       redirect_to post_path(@post)
+       redirect_to post_path(@post), notice: '更新しました'
     else
       render :edit
     end
@@ -58,5 +59,13 @@ class PostsController < ApplicationController
                                 :latitude,
                                 :longitude
    	                            )
+  end
+
+  def correct_post
+    @post = Post.find(params[:id])
+    if @post.user != current_user
+      flash[:alert] = "権限がありません。"
+      redirect_to root_path
+    end
   end
 end
