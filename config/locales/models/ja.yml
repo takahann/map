@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        place: 旅先
+        impressions: 感想
+        address: 観光スポット
+        budget: 予算

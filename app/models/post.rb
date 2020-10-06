@@ -4,7 +4,11 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 20, minimum: 2 }
+  validates :place, presence: true
+  validates :address, presence: true
+  validates :budget, presence: true
   validates :impressions, presence: true, length: { maximum: 20 }
+
 
   def self.search(search)
       if search

@@ -6,6 +6,7 @@
 		</p>
 		<%= form_for (@user) do |f| %>
 		  <div class="mx-auto" style="width: 1000px;">
+		  	<%= render 'layouts/error_messages', model: f.object %>
 			<table class="table table-bordered">
 				<div class="form-group">
 					<tr>

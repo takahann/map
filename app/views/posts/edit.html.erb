@@ -7,6 +7,7 @@
 	  <%= form_for (@post) do |f| %>
 	  <div class="mx-auto" style="width: 1000px;">
 	    <table class="table table-bordered">
+	    <%= render 'layouts/error_messages', model: f.object %>
 	    	<div class="form-group">
 			<tr>
 			  <th><%= f.label :タイトル %></th>

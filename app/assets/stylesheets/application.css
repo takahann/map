@@ -21,6 +21,15 @@
     background-attachment: fixed;
     background-size: cover;
 }
+
+.notice {
+  color: white;
+  background-color: blue;
+}
+.alert {
+  color: white;
+  background-color: red;
+}
 .headline {
     padding: 1rem 2rem;
     border-left: 5px solid #000;

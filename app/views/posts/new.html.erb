@@ -5,6 +5,7 @@
 	  	投稿をすると詳細画面へ進みます。
 	  </p>
 	  <%= form_for @post do |f| %>
+	  <%= render 'layouts/error_messages', model: f.object %>
 	  <div class="mx-auto" style="width: 1000px;">
 	    <table class="table table-bordered">
 	    	<div class="form-group">
