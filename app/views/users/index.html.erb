@@ -1,9 +1,0 @@
-<% @users.each do |user| %>
-<div class="row">
-	<ul>
-	  <li class="user-item"><%= user.name %></li>
-	  <li class="user-item"><%= user.email %></li>
-	</ul>
-	<%= render 'relationships/follow', user: user %>
-</div>
-<% end %>

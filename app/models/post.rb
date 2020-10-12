@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   validates :place, presence: true
   validates :address, presence: true
   validates :budget, presence: true
-  validates :impressions, presence: true, length: { maximum: 20 }
+  validates :impressions, presence: true, length: { maximum: 400 }
 
 
   def self.search(search)

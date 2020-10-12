@@ -4,8 +4,15 @@
     <% comments.first(3).each do |comment| %>
         <% unless comment.id.nil? %>
         <tr>
-          <td>userimage予定</td>
-          <td><%= "#{comment.user.name}" %></td>
+        <% if comment.user.user_image? %>
+          <td><%= image_tag comment.user.user_image.url, class: "rounded-circle", size: "100x100"%></td>
+        <% else %>
+          <td><img src="/assets/no_image.jpg" class="rounded-circle" alt="Card image cap" width="100" height="100"></td>
+        <% end %>
+          <td><%= link_to user_path(comment.user.id) do %>
+                   <%= comment.user.name %>
+              <% end %>
+          </td>
           <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
           <td><%= comment.content %></td>
           <% if comment.user == current_user %>
@@ -26,7 +33,11 @@
         <% comments.offset(3).each do |comment| %>
           <% unless comment.id.nil? %>
             <tr>
-              <td>userimage予定</td>
+              <% if comment.user.user_image? %>
+                <td><%= image_tag comment.user.user_image.url, class: "rounded-circle", size: "100x100"%></td>
+              <% else %>
+                <td><img src="/assets/no_image.jpg" class="rounded-circle" alt="Card image cap" width="100" height="100"></td>
+              <% end %>
               <td><%= "#{comment.user.name}" %></td>
               <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
               <td><%= comment.content %></td>

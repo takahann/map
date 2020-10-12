@@ -23,12 +23,20 @@
 }
 
 .notice {
-  color: white;
-  background-color: blue;
+    color: white;
+    background-color: blue;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
 }
 .alert {
-  color: white;
-  background-color: red;
+    color: white;
+    background-color: red;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
 }
 .headline {
     padding: 1rem 2rem;

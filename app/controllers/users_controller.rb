@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
-  def index
-	  @users = User.all
-  end
   def show
   	@user = User.find(params[:id])
   	@posts = @user.posts.all.order(created_at: :desc)
@@ -14,7 +11,7 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: '更新しました'
+      redirect_to user_path(@user.id)
     else
       render :edit
     end
