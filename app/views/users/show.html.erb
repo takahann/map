@@ -17,9 +17,10 @@
         <h3><%= @user.name %>さん</h3>
         <p>投稿数：<%= @posts.count %></p>
         <p><%= @user.introduction %></p>
-        <% if @user == current_user %>
-          <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
-        <% end %>
+          <% if current_user && current_user.id == 6 %>
+          <% elsif @user == current_user %>
+            <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary" %>
+          <% end %>
         <%= render 'relationships/follow', user: @user %>
       </div>
   </div>
@@ -84,8 +85,10 @@
                 <strong>予算　　：</strong><%= post.budget %><br>
                 <strong>投稿者　：
                   <%= link_to user_path(post.user.id) do %>
-                   <%= post.user.name %>
+                   <%= post.user.name %><br>
                   <% end %>
+                <strong>コメント：</strong><%= post.comments.count %>件<br>
+                <strong>いいね　：</strong><%= post.likes.count %>件
             </td>
             <td><%= link_to "詳細", post_path(post), class: "btn btn-sm btn-outline-secondary" %></td>
             <td><small class="text-muted">投稿日時：<%= post.created_at.strftime('%Y/%m/%d') %></small></td>
@@ -131,7 +134,9 @@
               </td>
               <td>投稿数：<%= user.posts.count %></td>
               <td>フォロワー数：<%= user.followers.count %></td>
-              <td><%= render 'relationships/follow', user: user %></td>
+              <% if @user == current_user %>
+                <td><%= render 'relationships/follow', user: user %></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

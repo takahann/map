@@ -3,13 +3,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def search
-    @posts = Post.search(params[:search])
+    @posts = Post.search(params[:search]).page(params[:page]).per(12)
   end
 	def new
 	  @post = Post.new
 	end
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(12)
   end
 	def create
   	@post = Post.new(post_params)
@@ -34,6 +34,7 @@ class PostsController < ApplicationController
   end
   def update
     @post = Post.find(params[:id])
+    @post.user = current_user
     if @post.update(post_params)
        redirect_to post_path(@post)
     else
@@ -42,6 +43,7 @@ class PostsController < ApplicationController
   end
   def destroy
     @post = Post.find(params[:id])
+    @post.user = current_user
     if @post.destroy
        redirect_to user_path(current_user.id)
     else
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
     end
   end
   def ranking
-    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+    @posts = Post.joins(:likes).group(:post_id).order('count(post_id) desc').page(params[:page]).per(12)
   end
   private
   def post_params

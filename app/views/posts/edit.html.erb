@@ -4,7 +4,7 @@
 	  <p>こちらでは旅の編集を行います。<br>
 	  	編集をすると詳細画面へ進みます。
 	  </p>
-	  <%= form_for (@post) do |f| %>
+	  <%= form_for @post do |f| %>
 	  <div class="mx-auto" style="width: 1000px;">
 	  <table class="table table-bordered">
 	    <%= render 'layouts/error_messages', model: f.object %>
@@ -43,7 +43,7 @@
 			  <th><%= f.label :写真 %><br><%= f.file_field :image, id: :post_image %></th>
 			  <td>
 			  	<% if @post.image.present? %>
-				  <%= image_tag @post.image, id: :img_prev, size: "300x300" %>
+				  <%= image_tag @post.image.url, id: :img_prev, size: "300x300" %>
 				<% else %>
 				  <%= image_tag "default.png", id: :img_prev, size: "300x300" %>
 				<% end %>
@@ -61,3 +61,4 @@
 	    <%= f.submit "編集する", class: "btn btn-primary float-right" %>
 	<% end %>
 	</div>
+</div>
